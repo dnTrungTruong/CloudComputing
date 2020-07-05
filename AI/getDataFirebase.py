@@ -2,17 +2,10 @@ import csv
 import json
 import pprint
 
-import firebase_admin
+from firebase import firebase
 import pandas as pd
-from firebase_admin import credentials, db
 
-# connect to Firebase
-if not firebase_admin._apps:
-    cred = credentials.Certificate(
-        'hcmute-cq-hk2-2020-n8-firebase-adminsdk-qbk6i-0ceb9dd602.json')
-    firebase_admin.initialize_app(cred, {
-        'databaseURL': 'https://hcmute-cq-hk2-2020-n8.firebaseio.com/'
-    })
+firebase = firebase.FirebaseApplication('https://hcmute-cq-hk2-2020-n8.firebaseio.com/')
 
 # find nearest index of a time stamp
 def findIndex(timeStamp):
@@ -35,8 +28,7 @@ listTree = ['Time', 'Temperature', 'Humidity']
 
 # get data from firebase
 for i in range(3):
-    ref = db.reference('DHT11_Data/' + listTree[i])
-    data = ref.get()
+    data = firebase.get('DHT11_Data/' + listTree[i], None)
 
     for key, value in data.items():
         listData[i].append(value)

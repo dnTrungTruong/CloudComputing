@@ -10,9 +10,9 @@ firebase = firebase.FirebaseApplication('https://hcmute-cq-hk2-2020-n8.firebasei
 from_zone = tz.gettz('UTC')
 to_zone = tz.gettz('Asia/Ho_Chi_Minh')
 
-a = 0.64088395
-b = -0.00183175
-c = 10.149464210142458
+a = 0.921291
+b = 0.02536222
+c = 0.7733201649135459
 
 @app.route('/', methods=['GET'])
 def home():
